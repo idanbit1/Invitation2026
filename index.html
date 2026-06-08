@@ -10,7 +10,7 @@
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Assistant", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f2f2f7; /* iOS system background */
+      background-color: #f2f2f7; 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,23 +23,23 @@
     /* iPhone Frame Container */
     .iphone-frame {
       width: 100%;
-      max-w: 430px; /* iPhone 15 Pro Max width */
+      max-w: 430px;
       background: #ffffff;
       border-radius: 55px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #000;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #1c1c1e;
       overflow: hidden;
       position: relative;
       max-width: 430px;
     }
 
-    /* iOS 26 Glassmorphism Widgets */
+    /* iOS 26 Glassmorphism Widgets (Monochrome) */
     .ios-widget {
-      background: rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(0, 0, 0, 0.05);
       border-radius: 28px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
     }
 
     /* Dynamic Island Fake styling */
@@ -50,7 +50,7 @@
       transform: translateX(-50%);
       width: 120px;
       height: 35px;
-      background-color: #000;
+      background-color: #1c1c1e;
       border-radius: 20px;
       z-index: 50;
       display: flex;
@@ -60,7 +60,7 @@
 
     /* Timer specific styling (Left to Right) */
     .timer-container {
-      direction: ltr; /* Force LTR for the timer */
+      direction: ltr; 
     }
 
     /* Scrollbar hidden for app-like feel */
@@ -80,16 +80,16 @@
 
   <div class="iphone-frame">
     
-    <div class="dynamic-island">
-    </div>
+    <div class="dynamic-island"></div>
 
     <!-- App Content Scrollable Area -->
     <div class="app-content bg-[#f2f2f7]">
       
-      <div class="relative h-72 w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+      <!-- Header Image Area -->
+      <div class="relative h-72 w-full bg-cover bg-center grayscale opacity-90" style="background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
         <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#f2f2f7]"></div>
         <div class="absolute bottom-4 left-0 right-0 px-6 text-center">
-          <h1 class="text-3xl font-extrabold text-[#1c1c1e] drop-shadow-sm leading-tight">
+          <h1 class="text-3xl font-extrabold text-[#1c1c1e] drop-shadow-md leading-tight">
              גיבוש אגף תפעול ושירות 🍹
           </h1>
         </div>
@@ -97,6 +97,7 @@
 
       <div class="px-5 space-y-5 -mt-2">
         
+        <!-- Timer Widget -->
         <div class="ios-widget p-5 text-center">
           <p class="text-xs font-bold text-[#6b7280] mb-3 uppercase tracking-wider">זמן נותר עד לגיבוש</p>
           <div class="timer-container flex justify-between items-center px-2">
@@ -122,54 +123,56 @@
           </div>
         </div>
 
+        <!-- Invitation Text -->
         <div class="ios-widget p-5">
-          <p class="font-bold text-[#1c1c1e] text-lg mb-2">צוות תפעול ושירות יקר,</p>
+          <p class="font-bold text-[#1c1c1e] text-lg mb-2">צוות תפעול ושירות היקר,</p>
           <p class="text-[#6b7280] leading-relaxed text-sm">
             הגיע הזמן לעצור רגע את שגרת העבודה, לקחת נשימה עמוקה, ולצאת ליום של גיבוש, הנאה וטעימות של ליקרים מיוחדים מתוצרת ארצנו הנהדרת! ✨
           </p>
-          <div class="mt-4 inline-block bg-gray-100 text-[#1c1c1e] px-3 py-1.5 rounded-full text-xs font-bold shadow-sm border border-gray-200">
+          <div class="mt-4 inline-block bg-[#e5e7eb] text-[#1c1c1e] px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
             הגיבוש כולו כשר.
           </div>
         </div>
 
+        <!-- Schedule Widget -->
         <div class="ios-widget p-5">
           <h2 class="text-xl font-black text-[#1c1c1e] mb-4 flex items-center gap-2">
-            <span class="text-2xl bg-gray-100 p-2 rounded-xl border border-gray-200">🗓️</span> לו"ז הגיבוש:
+            <span class="text-2xl bg-[#f3f4f6] p-2 rounded-xl">🗓️</span> לו"ז הגיבוש:
           </h2>
           
-          <div class="mb-5 bg-gray-50 border border-gray-200 rounded-2xl p-4 shadow-sm">
+          <div class="mb-5 bg-[#f9fafb] border border-[#e5e7eb] rounded-2xl p-4 shadow-sm">
             <p class="font-bold text-[#6b7280] text-xs uppercase mb-1">מתי?</p>
             <p class="text-[#1c1c1e] font-bold text-lg">יום רביעי, 17.6.2026</p>
           </div>
 
           <!-- Timeline Items -->
-          <div class="relative border-r-2 border-gray-200 pr-4 space-y-6 mr-2">
+          <div class="relative border-r-2 border-[#e5e7eb] pr-4 space-y-6 mr-2">
             
-            <!-- Item 1 -->
+            <!-- Item 1: Winery -->
             <div class="relative">
               <div class="absolute -right-[23px] top-1 w-4 h-4 bg-[#1c1c1e] rounded-full border-4 border-[#f2f2f7]"></div>
               <p class="font-bold text-[#1c1c1e] text-base mb-1">10:30 - נפגשים ביקב אבן רם</p>
               <p class="text-xs text-[#6b7280] font-semibold mb-3">(נא לדייק!)</p>
               <div class="space-y-2">
-                <a href="https://waze.com/ul?q=יקב אבן רם" target="_blank" class="flex items-center justify-center w-full bg-gray-100 hover:bg-gray-200 text-[#1c1c1e] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-gray-200">
-                  🚗 לחצו כאן לניווט ב-Waze ליקב אבן רם
+                <a href="https://waze.com/ul?q=יקב אבן רם" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
+                  🚗 ניווט ב-Waze ליקב אבן רם
                 </a>
-                <a href="https://www.evenram.co.il/product/%d7%a1%d7%93%d7%a0%d7%aa-%d7%9c%d7%99%d7%a7%d7%a8%d7%99%d7%9d-vip/" target="_blank" class="flex items-center justify-center w-full bg-gray-50 hover:bg-gray-100 text-[#6b7280] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-gray-200">
+                <a href="https://www.evenram.co.il/product/%d7%a1%d7%93%d7%a0%d7%aa-%d7%9c%d7%99%d7%a7%d7%a8%d7%99%d7%9d-vip/" target="_blank" class="flex items-center justify-center w-full bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#6b7280] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
                   🍷 לחצו כאן לתיאור הסדנא ביקב
                 </a>
               </div>
             </div>
 
-            <!-- Item 2 -->
+            <!-- Item 2: Restaurant -->
             <div class="relative">
               <div class="absolute -right-[23px] top-1 w-4 h-4 bg-[#6b7280] rounded-full border-4 border-[#f2f2f7]"></div>
               <p class="font-bold text-[#1c1c1e] text-base mb-3 leading-snug">13:30 - ארוחת צהריים במסעדה הבשרית "הפורטוגזי"</p>
               
               <div class="space-y-2">
-                <a href="https://waze.com/ul?q=מסעדת הפורטוגזי בביתן אהרון" target="_blank" class="flex items-center justify-center w-full bg-gray-100 hover:bg-gray-200 text-[#1c1c1e] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-gray-200">
-                  🚗 לחצו כאן לניווט ב-Waze למסעדת הפורטוגזי בביתן אהרון
+                <a href="https://waze.com/ul?q=מסעדת הפורטוגזי בביתן אהרון" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
+                  🚗 ניווט ב-Waze למסעדת הפורטוגזי
                 </a>
-                <a href="https://www.haportugezi.co.il/_files/ugd/438f6a_a74abcace0674a149c7fe1c0bb81c783.pdf" target="_blank" class="flex items-center justify-center w-full bg-gray-50 hover:bg-gray-100 text-[#6b7280] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-gray-200">
+                <a href="https://www.haportugezi.co.il/_files/ugd/438f6a_a74abcace0674a149c7fe1c0bb81c783.pdf" target="_blank" class="flex items-center justify-center w-full bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#6b7280] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
                   📖 לחצו כאן לצפייה בתפריט המסעדה
                 </a>
               </div>
@@ -178,9 +181,10 @@
           </div>
         </div>
 
+        <!-- Teasers Widget -->
         <div class="ios-widget p-5">
           <h2 class="text-xl font-black text-[#1c1c1e] mb-4 flex items-center gap-2">
-            <span class="text-2xl bg-gray-100 p-2 rounded-xl border border-gray-200">📸</span> קצת טעימות ממה שמחכה לנו:
+            <span class="text-2xl bg-[#f3f4f6] p-2 rounded-xl">📸</span> קצת טעימות:
           </h2>
           <ul class="text-[#6b7280] text-sm space-y-2 mb-5 font-medium px-2">
             <li class="flex items-start gap-2"><span class="text-[#1c1c1e] mt-0.5">●</span> אווירה כפרית ופסטורלית ביקב</li>
@@ -189,21 +193,22 @@
           </ul>
 
           <div class="grid grid-cols-2 gap-3">
-            <div class="rounded-2xl overflow-hidden h-40 shadow-sm relative border border-gray-200">
-              <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="יקב" class="w-full h-full object-cover">
-              <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-md px-2 py-1 rounded-md border border-gray-200/50">
+            <div class="rounded-2xl overflow-hidden h-40 shadow-sm relative border border-[#e5e7eb]">
+              <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="יקב" class="w-full h-full object-cover grayscale opacity-90">
+              <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-md px-2 py-1 rounded-md">
                 <span class="text-[#1c1c1e] text-xs font-bold">היקב</span>
               </div>
             </div>
-            <div class="rounded-2xl overflow-hidden h-40 shadow-sm relative border border-gray-200">
-              <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80" alt="בשרים" class="w-full h-full object-cover">
-              <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-md px-2 py-1 rounded-md border border-gray-200/50">
+            <div class="rounded-2xl overflow-hidden h-40 shadow-sm relative border border-[#e5e7eb]">
+              <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80" alt="בשרים" class="w-full h-full object-cover grayscale opacity-90">
+              <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-md px-2 py-1 rounded-md">
                 <span class="text-[#1c1c1e] text-xs font-bold">המסעדה</span>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Info Widget -->
         <div class="ios-widget p-5 space-y-6">
           
           <!-- Winery Info -->
@@ -212,12 +217,12 @@
               <span class="text-xl">🌐</span> רוצים להציץ מראש ביקב?
             </h3>
             <p class="text-[#6b7280] text-sm mb-3">מוזמנים לבקר באתר היקב ולהתרשם:</p>
-            <a href="http://www.evenram.co.il" target="_blank" class="block w-full bg-gray-100 border border-gray-200 rounded-xl p-3 text-center text-[#1c1c1e] font-bold shadow-sm active:scale-95 transition-transform">
+            <a href="https://www.evenram.co.il" target="_blank" class="block w-full bg-[#1c1c1e] text-white rounded-xl p-3 text-center font-bold shadow-sm active:scale-95 transition-transform">
               אתר יקב אבן רם
             </a>
           </div>
 
-          <div class="h-px bg-gray-200 w-full"></div>
+          <div class="h-px bg-[#e5e7eb] w-full"></div>
 
           <!-- Restaurant Info -->
           <div>
@@ -225,24 +230,25 @@
               <span class="text-xl">🔥</span> רוצים להתלהב מהמסעדה?
             </h3>
             <p class="text-[#6b7280] text-sm mb-3">מוזמנים לבקר באתר המסעדה ולהתרשם:</p>
-            <a href="https://www.haportugezi.co.il/" target="_blank" class="block w-full bg-gray-100 border border-gray-200 rounded-xl p-3 text-center text-[#1c1c1e] font-bold shadow-sm active:scale-95 transition-transform mb-4">
+            <a href="https://www.haportugezi.co.il/" target="_blank" class="block w-full bg-[#1c1c1e] text-white rounded-xl p-3 text-center font-bold shadow-sm active:scale-95 transition-transform mb-4">
               אתר מסעדת הפורטוגזי
             </a>
             
-            <div class="bg-white p-4 rounded-2xl text-xs text-[#6b7280] leading-relaxed border border-gray-200 shadow-sm">
+            <div class="bg-[#f9fafb] p-4 rounded-2xl text-xs text-[#6b7280] leading-relaxed border border-[#e5e7eb]">
               המסעדה מתמחה בבשרים מעושנים איכותיים, עופות ישר מתנור הרוטיסרי, תוספות וסלטים מרעננים. מנות הדגל כוללות בריסקט ואסאדו המעושנים במקום לצד תיבול פורטוגזי מיוחד! 🥩🔥
             </div>
           </div>
 
         </div>
 
+        <!-- Footer -->
         <div class="pb-10 pt-4 text-center">
-          <div class="inline-flex items-center gap-2 bg-gray-200 border border-gray-300 text-[#1c1c1e] px-4 py-2.5 rounded-full text-sm font-bold mb-6 shadow-sm">
+          <div class="inline-flex items-center gap-2 bg-[#f3f4f6] text-[#1c1c1e] px-4 py-2.5 rounded-full text-sm font-bold mb-6 shadow-sm border border-[#e5e7eb]">
             <span>🚘</span> ניתן ואף מומלץ לתאם נסיעה יחדיו
           </div>
           
           <h2 class="text-4xl font-black text-[#1c1c1e] drop-shadow-sm">
-            נפגש...
+            ניפגש...
           </h2>
         </div>
 
@@ -251,32 +257,24 @@
   </div>
 
   <script>
-    // Set the date we're counting down to
-    // June 17, 2026 10:30:00
+    // Set the date we're counting down to: June 17, 2026 10:30:00
     const countDownDate = new Date("Jun 17, 2026 10:30:00").getTime();
 
     // Update the count down every 1 second
     const x = setInterval(function() {
-
-      // Get today's date and time
       const now = new Date().getTime();
-
-      // Find the distance between now and the count down date
       const distance = countDownDate - now;
 
-      // Time calculations for days, hours, minutes and seconds
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Display the result in the elements (padding with zero if needed)
       document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
       document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
       document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
       document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
 
-      // If the count down is finished, write some text
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("days").innerHTML = "00";
