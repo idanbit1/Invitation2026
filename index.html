@@ -16,39 +16,40 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      padding: 20px;
+      padding: 10px; /* ריווח מינימלי מסביב */
       -webkit-font-smoothing: antialiased;
     }
 
-    /* iPhone Frame Container */
+    /* המסגרת של האייפון - מותאמת לרוחב מלא בנייד */
     .iphone-frame {
       width: 100%;
-      max-w: 430px;
+      max-width: 430px; /* רוחב מקסימלי לתצוגה במחשב */
       background: #ffffff;
-      border-radius: 55px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #1c1c1e;
+      border-radius: 40px; /* פינות פחות מעוגלות כדי לא לחתוך תוכן */
+      /* הצללה עדינה יותר למסגרת, שמדמה שוליים שחורים אבל לא עבים מדי */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 8px #1c1c1e; 
       overflow: hidden;
       position: relative;
     }
 
-    /* iOS 26 Glassmorphism Widgets (Monochrome text/UI elements) */
+    /* iOS 26 Glassmorphism Widgets */
     .ios-widget {
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(0, 0, 0, 0.05);
-      border-radius: 28px;
+      border-radius: 24px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
     }
 
-    /* Dynamic Island Fake styling */
+    /* האי הדינמי - מותאם פרופורציונלית */
     .dynamic-island {
       position: absolute;
-      top: 15px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 120px;
-      height: 35px;
+      width: 100px;
+      height: 28px;
       background-color: #1c1c1e;
       border-radius: 20px;
       z-index: 50;
@@ -57,22 +58,24 @@
       justify-content: center;
     }
 
-    /* Timer specific styling (Left to Right) */
+    /* כיוון השעון */
     .timer-container {
       direction: ltr; 
     }
 
-    /* Scrollbar hidden for app-like feel */
+    /* הסתרת פס הגלילה */
     .app-content::-webkit-scrollbar {
       display: none;
     }
     .app-content {
       -ms-overflow-style: none;
       scrollbar-width: none;
-      height: 850px;
+      height: 90vh; /* גובה מותאם לנייד */
+      max-height: 850px;
       overflow-y: auto;
-      padding-bottom: 40px;
+      padding-bottom: 100px; /* הגדלתי את הריווח כדי שיהיה מקום לכפתור הצף */
     }
+
   </style>
 </head>
 <body>
@@ -81,97 +84,108 @@
     
     <div class="dynamic-island"></div>
 
-    <!-- App Content Scrollable Area -->
+    <!-- אזור התוכן הנגלל -->
     <div class="app-content bg-[#f2f2f7]">
       
-      <!-- Header Image Area (Full color) -->
-      <div class="relative h-72 w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#f2f2f7]"></div>
-        <div class="absolute bottom-4 left-0 right-0 px-6 text-center">
-          <h1 class="text-3xl font-extrabold text-[#1c1c1e] drop-shadow-md leading-tight">
-             גיבוש אגף תפעול ושירות 🍹
+      <!-- תמונת כותרת -->
+      <div class="relative h-64 w-full bg-cover bg-center opacity-90" style="background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#f2f2f7]"></div>
+        <div class="absolute bottom-4 left-0 right-0 px-4 text-center">
+          <h1 class="text-2xl font-extrabold text-[#1c1c1e] drop-shadow-md leading-tight">
+              גיבוש אגף תפעול ושירות 🍹
           </h1>
         </div>
       </div>
 
-      <div class="px-5 space-y-5 -mt-2">
+      <div class="px-4 space-y-4 -mt-2">
         
-        <!-- Timer Widget -->
-        <div class="ios-widget p-5 text-center">
-          <p class="text-xs font-bold text-[#6b7280] mb-3 uppercase tracking-wider">זמן נותר עד לגיבוש</p>
-          <div class="timer-container flex justify-between items-center px-2">
-            <div class="flex flex-col items-center w-16">
-              <span id="days" class="text-3xl font-bold text-[#1c1c1e] tracking-tight">00</span>
+        <!-- שעון ספירה לאחור -->
+        <div class="ios-widget p-4 text-center">
+          <p class="text-xs font-bold text-[#6b7280] mb-2 uppercase tracking-wider">זמן נותר עד לגיבוש</p>
+          <div class="timer-container flex justify-between items-center px-1">
+            <div class="flex flex-col items-center w-14">
+              <span id="days" class="text-2xl font-bold text-[#1c1c1e] tracking-tight">00</span>
               <span class="text-[10px] text-[#6b7280] font-semibold mt-1">ימים</span>
             </div>
-            <span class="text-xl text-[#6b7280] font-light mb-4">:</span>
-            <div class="flex flex-col items-center w-16">
-              <span id="hours" class="text-3xl font-bold text-[#1c1c1e] tracking-tight">00</span>
+            <span class="text-lg text-[#6b7280] font-light mb-3">:</span>
+            <div class="flex flex-col items-center w-14">
+              <span id="hours" class="text-2xl font-bold text-[#1c1c1e] tracking-tight">00</span>
               <span class="text-[10px] text-[#6b7280] font-semibold mt-1">שעות</span>
             </div>
-            <span class="text-xl text-[#6b7280] font-light mb-4">:</span>
-            <div class="flex flex-col items-center w-16">
-              <span id="minutes" class="text-3xl font-bold text-[#1c1c1e] tracking-tight">00</span>
+            <span class="text-lg text-[#6b7280] font-light mb-3">:</span>
+            <div class="flex flex-col items-center w-14">
+              <span id="minutes" class="text-2xl font-bold text-[#1c1c1e] tracking-tight">00</span>
               <span class="text-[10px] text-[#6b7280] font-semibold mt-1">דקות</span>
             </div>
-            <span class="text-xl text-[#6b7280] font-light mb-4">:</span>
-            <div class="flex flex-col items-center w-16">
-              <span id="seconds" class="text-3xl font-bold text-[#1c1c1e] tracking-tight">00</span>
+            <span class="text-lg text-[#6b7280] font-light mb-3">:</span>
+            <div class="flex flex-col items-center w-14">
+              <span id="seconds" class="text-2xl font-bold text-[#1c1c1e] tracking-tight">00</span>
               <span class="text-[10px] text-[#6b7280] font-semibold mt-1">שניות</span>
             </div>
           </div>
         </div>
 
-        <!-- Invitation Text -->
-        <div class="ios-widget p-5">
-          <p class="font-bold text-[#1c1c1e] text-lg mb-2">צוות תפעול ושירות היקר,</p>
+        <!-- טקסט הזמנה -->
+        <div class="ios-widget p-4">
+          <p class="font-bold text-[#1c1c1e] text-base mb-2">צוות תפעול ושירות היקר,</p>
           <p class="text-[#6b7280] leading-relaxed text-sm">
             הגיע הזמן לעצור רגע את שגרת העבודה, לקחת נשימה עמוקה, ולצאת ליום של גיבוש, הנאה וטעימות של ליקרים מיוחדים מתוצרת ארצנו הנהדרת! ✨
           </p>
-          <div class="mt-4 inline-block bg-[#e5e7eb] text-[#1c1c1e] px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
+          <div class="mt-3 inline-block bg-[#e5e7eb] text-[#1c1c1e] px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
             הגיבוש כולו כשר.
           </div>
         </div>
 
-        <!-- Schedule Widget -->
-        <div class="ios-widget p-5">
-          <h2 class="text-xl font-black text-[#1c1c1e] mb-4 flex items-center gap-2">
-            <span class="text-2xl bg-[#f3f4f6] p-2 rounded-xl">🗓️</span> לו"ז הגיבוש:
+        <!-- לו"ז -->
+        <div class="ios-widget p-4">
+          <h2 class="text-lg font-black text-[#1c1c1e] mb-3 flex items-center gap-2">
+            <span class="text-xl bg-[#f3f4f6] p-1.5 rounded-xl">🗓️</span> לו"ז הגיבוש:
           </h2>
           
-          <div class="mb-5 bg-[#f9fafb] border border-[#e5e7eb] rounded-2xl p-4 shadow-sm">
-            <p class="font-bold text-[#6b7280] text-xs uppercase mb-1">מתי?</p>
-            <p class="text-[#1c1c1e] font-bold text-lg">יום רביעי, 17.6.2026</p>
+          <div class="mb-4 bg-[#f9fafb] border border-[#e5e7eb] rounded-2xl p-3 shadow-sm">
+            <p class="font-bold text-[#6b7280] text-[10px] uppercase mb-1">מתי?</p>
+            <p class="text-[#1c1c1e] font-bold text-base">יום רביעי, 17.6.2026</p>
           </div>
 
-          <!-- Timeline Items -->
-          <div class="relative border-r-2 border-[#e5e7eb] pr-4 space-y-6 mr-2">
-            
-            <!-- Item 1: Winery -->
+          <div class="relative border-r-2 border-[#e5e7eb] pr-3 space-y-5 mr-1">
+
+            <!-- מצפה משואה -->
             <div class="relative">
-              <div class="absolute -right-[23px] top-1 w-4 h-4 bg-[#1c1c1e] rounded-full border-4 border-[#f2f2f7]"></div>
-              <p class="font-bold text-[#1c1c1e] text-base mb-1">10:30 - נפגשים ביקב אבן רם</p>
-              <p class="text-xs text-[#6b7280] font-semibold mb-3">(נא לדייק!)</p>
+              <div class="absolute -right-[19px] top-1 w-3.5 h-3.5 bg-[#1c1c1e] rounded-full border-4 border-[#f2f2f7]"></div>
+              <p class="font-bold text-[#1c1c1e] text-sm mb-1">09:30 - נפגשים במצפה משואה</p>
+              <p class="text-[10px] text-[#6b7280] font-semibold mb-2">פארק בריטניה, לקפה ומאפה ☕🥐</p>
               <div class="space-y-2">
-                <a href="https://waze.com/ul/hsv8u4yx0e" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
+                <a href="https://ul.waze.com/ul?venue_id=22872381.228854879.2835&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors border border-[#e5e7eb]">
+                  🚗 ניווט ב-Waze למצפה משואה
+                </a>
+              </div>
+            </div>
+            
+            <!-- יקב -->
+            <div class="relative">
+              <div class="absolute -right-[19px] top-1 w-3.5 h-3.5 bg-[#4b5563] rounded-full border-4 border-[#f2f2f7]"></div>
+              <p class="font-bold text-[#1c1c1e] text-sm mb-1">10:30 - נפגשים ביקב אבן רם</p>
+              <p class="text-[10px] text-[#6b7280] font-semibold mb-2">(נא לדייק!)</p>
+              <div class="space-y-2">
+                <a href="https://waze.com/ul/hsv8u4yx0e" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors border border-[#e5e7eb]">
                   🚗 ניווט ב-Waze ליקב אבן רם
                 </a>
-                <a href="https://www.evenram.co.il/product/%d7%a1%d7%93%d7%a0%d7%aa-%d7%9c%d7%99%d7%a7%d7%a8%d7%99%d7%9d-vip/" target="_blank" class="flex items-center justify-center w-full bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#6b7280] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
+                <a href="https://www.evenram.co.il/product/%d7%a1%d7%93%d7%a0%d7%aa-%d7%9c%d7%99%d7%a7%d7%a8%d7%99%d7%9d-vip/" target="_blank" class="flex items-center justify-center w-full bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#6b7280] font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors border border-[#e5e7eb]">
                   🍷 לחצו כאן לתיאור הסדנא ביקב
                 </a>
               </div>
             </div>
 
-            <!-- Item 2: Restaurant -->
+            <!-- מסעדה -->
             <div class="relative">
-              <div class="absolute -right-[23px] top-1 w-4 h-4 bg-[#6b7280] rounded-full border-4 border-[#f2f2f7]"></div>
-              <p class="font-bold text-[#1c1c1e] text-base mb-3 leading-snug">13:30 - ארוחת צהריים במסעדה הבשרית "הפורטוגזי"</p>
+              <div class="absolute -right-[19px] top-1 w-3.5 h-3.5 bg-[#6b7280] rounded-full border-4 border-[#f2f2f7]"></div>
+              <p class="font-bold text-[#1c1c1e] text-sm mb-2 leading-snug">13:30 - ארוחת צהריים במסעדה הבשרית "הפורטוגזי"</p>
               
               <div class="space-y-2">
-                <a href="https://waze.com/ul?q=מסעדת הפורטוגזי בביתן אהרון" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
+                <a href="https://waze.com/ul?q=מסעדת הפורטוגזי בביתן אהרון" target="_blank" class="flex items-center justify-center w-full bg-[#f3f4f6] hover:bg-[#e5e7eb] text-[#1c1c1e] font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors border border-[#e5e7eb]">
                   🚗 ניווט ב-Waze למסעדת הפורטוגזי
                 </a>
-                <a href="https://www.haportugezi.co.il/_files/ugd/438f6a_a74abcace0674a149c7fe1c0bb81c783.pdf" target="_blank" class="flex items-center justify-center w-full bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#6b7280] font-semibold py-3 px-4 rounded-xl text-sm transition-colors border border-[#e5e7eb]">
+                <a href="https://www.haportugezi.co.il/_files/ugd/438f6a_a74abcace0674a149c7fe1c0bb81c783.pdf" target="_blank" class="flex items-center justify-center w-full bg-[#f9fafb] hover:bg-[#f3f4f6] text-[#6b7280] font-semibold py-2.5 px-3 rounded-xl text-xs transition-colors border border-[#e5e7eb]">
                   📖 לחצו כאן לצפייה בתפריט המסעדה
                 </a>
               </div>
@@ -180,86 +194,90 @@
           </div>
         </div>
 
-        <!-- Teasers Widget (Full color images) -->
-        <div class="ios-widget p-5">
-          <h2 class="text-xl font-black text-[#1c1c1e] mb-4 flex items-center gap-2">
-            <span class="text-2xl bg-[#f3f4f6] p-2 rounded-xl">📸</span> קצת טעימות:
+        <!-- תמונות -->
+        <div class="ios-widget p-4">
+          <h2 class="text-lg font-black text-[#1c1c1e] mb-3 flex items-center gap-2">
+            <span class="text-xl bg-[#f3f4f6] p-1.5 rounded-xl">📸</span> קצת טעימות:
           </h2>
-          <ul class="text-[#6b7280] text-sm space-y-2 mb-5 font-medium px-2">
+          <ul class="text-[#6b7280] text-xs space-y-1.5 mb-4 font-medium px-1">
             <li class="flex items-start gap-2"><span class="text-[#1c1c1e] mt-0.5">●</span> אווירה כפרית ופסטורלית ביקב</li>
             <li class="flex items-start gap-2"><span class="text-[#1c1c1e] mt-0.5">●</span> ליקרים מיוחדים מתוצרת מקומית</li>
             <li class="flex items-start gap-2"><span class="text-[#1c1c1e] mt-0.5">●</span> וארוחת צהריים בסגנון פורטוגזי מעושן</li>
           </ul>
 
-          <div class="grid grid-cols-2 gap-3">
-            <div class="rounded-2xl overflow-hidden h-40 shadow-sm relative border border-[#e5e7eb]">
-              <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="יקב" class="w-full h-full object-cover">
-              <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-md px-2 py-1 rounded-md">
-                <span class="text-[#1c1c1e] text-xs font-bold">היקב</span>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="rounded-2xl overflow-hidden h-32 shadow-sm relative border border-[#e5e7eb]">
+              <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="יקב" class="w-full h-full object-cover opacity-90">
+              <div class="absolute bottom-1.5 right-1.5 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-md">
+                <span class="text-[#1c1c1e] text-[10px] font-bold">היקב</span>
               </div>
             </div>
-            <div class="rounded-2xl overflow-hidden h-40 shadow-sm relative border border-[#e5e7eb]">
-              <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80" alt="בשרים" class="w-full h-full object-cover">
-              <div class="absolute bottom-2 right-2 bg-white/90 backdrop-blur-md px-2 py-1 rounded-md">
-                <span class="text-[#1c1c1e] text-xs font-bold">המסעדה</span>
+            <div class="rounded-2xl overflow-hidden h-32 shadow-sm relative border border-[#e5e7eb]">
+              <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80" alt="בשרים" class="w-full h-full object-cover opacity-90">
+              <div class="absolute bottom-1.5 right-1.5 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-md">
+                <span class="text-[#1c1c1e] text-[10px] font-bold">המסעדה</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Info Widget -->
-        <div class="ios-widget p-5 space-y-6">
+        <!-- קישורים לאתרים -->
+        <div class="ios-widget p-4 space-y-5">
           
-          <!-- Winery Info -->
           <div>
-            <h3 class="font-bold text-[#1c1c1e] text-lg flex items-center gap-2 mb-2">
-              <span class="text-xl">🌐</span> רוצים להציץ מראש ביקב?
+            <h3 class="font-bold text-[#1c1c1e] text-base flex items-center gap-2 mb-1">
+              <span class="text-lg">🌐</span> רוצים להציץ מראש ביקב?
             </h3>
-            <p class="text-[#6b7280] text-sm mb-3">מוזמנים לבקר באתר היקב ולהתרשם:</p>
-            <a href="https://www.evenram.co.il" target="_blank" class="block w-full bg-[#1c1c1e] text-white rounded-xl p-3 text-center font-bold shadow-sm active:scale-95 transition-transform">
+            <p class="text-[#6b7280] text-xs mb-2">מוזמנים לבקר באתר היקב ולהתרשם:</p>
+            <a href="https://www.evenram.co.il" target="_blank" class="block w-full bg-[#1c1c1e] text-white rounded-xl p-2.5 text-center font-bold text-sm shadow-sm active:scale-95 transition-transform">
               אתר יקב אבן רם
             </a>
           </div>
 
           <div class="h-px bg-[#e5e7eb] w-full"></div>
 
-          <!-- Restaurant Info -->
           <div>
-            <h3 class="font-bold text-[#1c1c1e] text-lg flex items-center gap-2 mb-2">
-              <span class="text-xl">🔥</span> רוצים להתלהב מהמסעדה?
+            <h3 class="font-bold text-[#1c1c1e] text-base flex items-center gap-2 mb-1">
+              <span class="text-lg">🔥</span> רוצים להתלהב מהמסעדה?
             </h3>
-            <p class="text-[#6b7280] text-sm mb-3">מוזמנים לבקר באתר המסעדה ולהתרשם:</p>
-            <a href="https://www.haportugezi.co.il/" target="_blank" class="block w-full bg-[#1c1c1e] text-white rounded-xl p-3 text-center font-bold shadow-sm active:scale-95 transition-transform mb-4">
+            <p class="text-[#6b7280] text-xs mb-2">מוזמנים לבקר באתר המסעדה ולהתרשם:</p>
+            <a href="https://www.haportugezi.co.il/" target="_blank" class="block w-full bg-[#1c1c1e] text-white rounded-xl p-2.5 text-center font-bold text-sm shadow-sm active:scale-95 transition-transform mb-3">
               אתר מסעדת הפורטוגזי
             </a>
             
-            <div class="bg-[#f9fafb] p-4 rounded-2xl text-xs text-[#6b7280] leading-relaxed border border-[#e5e7eb]">
+            <div class="bg-[#f9fafb] p-3 rounded-2xl text-[10px] text-[#6b7280] leading-relaxed border border-[#e5e7eb]">
               המסעדה מתמחה בבשרים מעושנים איכותיים, עופות ישר מתנור הרוטיסרי, תוספות וסלטים מרעננים. מנות הדגל כוללות בריסקט ואסאדו המעושנים במקום לצד תיבול פורטוגזי מיוחד! 🥩🔥
             </div>
           </div>
 
         </div>
 
-        <!-- Footer -->
-        <div class="pb-10 pt-4 text-center">
-          <div class="inline-flex items-center gap-2 bg-[#f3f4f6] text-[#1c1c1e] px-4 py-2.5 rounded-full text-sm font-bold mb-6 shadow-sm border border-[#e5e7eb]">
+        <!-- סיומת -->
+        <div class="pb-8 pt-3 text-center">
+          <div class="inline-flex items-center gap-1.5 bg-[#f3f4f6] text-[#1c1c1e] px-3 py-2 rounded-full text-xs font-bold mb-4 shadow-sm border border-[#e5e7eb]">
             <span>🚘</span> ניתן ואף מומלץ לתאם נסיעה יחדיו
           </div>
           
-          <h2 class="text-4xl font-black text-[#1c1c1e] drop-shadow-sm">
+          <h2 class="text-3xl font-black text-[#1c1c1e] drop-shadow-sm">
             ניפגש...
           </h2>
         </div>
 
       </div>
     </div>
+
+    <!-- כפתור צף הוספה ליומן - סגנון זכוכית iOS -->
+    <button onclick="downloadICS()" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex items-center justify-center gap-2 bg-[rgba(255,255,255,0.75)] backdrop-blur-xl border border-white/60 text-[#1c1c1e] font-bold px-6 py-3.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.15)] hover:bg-[rgba(255,255,255,0.95)] active:scale-95 transition-all z-[100] w-max cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><line x1="12" y1="14" x2="12" y2="18"></line><line x1="10" y1="16" x2="14" y2="16"></line></svg>
+      <span class="text-sm tracking-wide">+ הוסף ליומן</span>
+    </button>
+
   </div>
 
   <script>
-    // Set the date we're counting down to: June 17, 2026 10:30:00
-    const countDownDate = new Date("Jun 17, 2026 10:30:00").getTime();
+    // שעון ספירה לאחור
+    const countDownDate = new Date("Jun 17, 2026 09:30:00").getTime(); // עדכנתי את השעון לשעת המפגש החדשה (09:30)
 
-    // Update the count down every 1 second
     const x = setInterval(function() {
       const now = new Date().getTime();
       const distance = countDownDate - now;
@@ -282,6 +300,18 @@
         document.getElementById("seconds").innerHTML = "00";
       }
     }, 1000);
+
+    // פונקציה להורדת קובץ יומן (.ics)
+    function downloadICS() {
+      const icsData = "BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20260617T063000Z\nDTEND:20260617T133000Z\nSUMMARY:גיבוש אגף תפעול ושירות\nLOCATION:מצפה משואה, פארק בריטניה\nDESCRIPTION:לו״ז הגיבוש:\\n09:30 - מצפה משואה\\n10:30 - יקב אבן רם\\n13:30 - מסעדת הפורטוגזי\nEND:VEVENT\nEND:VCALENDAR";
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'gibus_event.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   </script>
 </body>
 </html>
